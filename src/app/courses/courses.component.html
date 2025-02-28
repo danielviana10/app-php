@@ -1,2 +1,6 @@
-<p>{{name}}</p>
-
+<table border="1">
+  <tr *ngFor="let c of courses">
+    <td>{{c.name}}</td>
+    <td>{{c.price}}</td>
+  </tr>
+</table>
