@@ -1,6 +1,29 @@
+<form>
+  <h2 *ngIf="!course.id">Criar Novo Curso</h2>
+  <h2 *ngIf="course.id">Editando Curso: {{ course.name }}</h2>
+
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+  <label>Nome</label>
+  <input type="text" name="name" [(ngModel)]="course.name" required />
+  <br />
+
+  <label>Preço</label>
+  <input type="number" name="price" [(ngModel)]="course.price" required />
+  <br />
+
+  <button type="button" (click)="register()" [disabled]="isLoading">Register</button>
+  <button type="button" (click)="update()" [disabled]="isLoading">Update</button>
+</form>
+
 <table border="1">
-  <tr *ngFor="let c of courses">
-    <td>{{c.name}}</td>
-    <td>{{c.price}}</td>
+  <tr *ngFor="let course of courses">
+    <td>{{ course.name }}</td>
+    <td>{{ course.price }}</td>
+    <td>
+      <button (click)="selectCourse(course)" [disabled]="isLoading">Select</button>
+      <button (click)="delete(course)" [disabled]="isLoading">Delete</button>
+    </td>
   </tr>
 </table>
